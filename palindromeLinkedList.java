@@ -6,63 +6,31 @@
  *     ListNode(int x) { val = x; }
  * }
  */
+ // note: the ordinary data structure was destoryed. However, it can be easily recovered by reverse the second half linked list back to get the original linked list
 public class Solution {
     public boolean isPalindrome(ListNode head) {
         if (head == null) {
             return true;
-        } else {
-            int length = 0;
-            int middleIndex;
-            ListNode dummy = new ListNode(0);
-            ListNode secHalfHead = new ListNode(0);
-            dummy.next = head;
-            for (; head != null; head = head.next) {
-                length++;
-            }
-            head = dummy.next;
-            switch (length) {
-            case 1: 
-                return true;
-            case 2:
-                if (head.val != head.next.val) {
-                    return false;
-                } else {
-                    return true;
-                }
-            default:
-            ListNode tail = dummy.next;
-            if (length % 2 == 0) {
-                middleIndex = length / 2;
-                for (int i = 0; i < middleIndex - 1; i++) {
-                    tail = tail.next;
-                }
-                secHalfHead = tail.next;
-            } else {
-                middleIndex = (length - 1) / 2;
-                for (int i = 0; i < middleIndex; i++) {
-                     tail = tail.next;
-                    }
-                secHalfHead = tail.next;
-            }
-            secHalfHead = reverseList(secHalfHead);
-            head = dummy.next;
-            for (int i = 0; i < middleIndex; i++) {
-                //System.out.println(head.val);
-                //System.out.println(secHalfHead.val);
-                //System.out.println(Boolean.toString(head.val == secHalfHead.val));
-                if (head.val != secHalfHead.val) {
-                    return false;
-                } else {
-                    head = head.next;
-                    secHalfHead = secHalfHead.next;
-                    //System.out.println(head);
-                    //System.out.println(secHalfHead);
-                }
-            }
-            return true;                
-            }
         }
+        ListNode middle = findMiddle(head);
+        middle.next = reverseList(middle.next);
+        ListNode p1 = head, p2 = middle.next;
+        while (p1 != null && p2 != null && p1.val == p2.val) {
+            p1 = p1.next;
+            p2 = p2.next;
+        }
+        //middle.next = reverseList(middle.next);  // recover the original data structure, but it's not required for this question.
+        return p2 == null; // if true, then compare completed, no inequality founded
     }
+    private ListNode findMiddle(ListNode head) {
+        ListNode slow = head, fast = head.next;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+    
     private ListNode reverseList(ListNode head) {
         if (head == null) {
             return null;
