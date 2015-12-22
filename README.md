@@ -1,4 +1,7 @@
 # LeetCode
-My personal leetcode practice
+My personal leetcode practice with Java.
 
-By Muqing Zhou
+By Muqing (Mason) Zhou
+
+Updates:
+1. Linked List Easy Problems Done by Dec.20.2015.
