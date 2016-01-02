@@ -30,10 +30,10 @@ public class Solution {
                 rightHalf.next = head;
                 rightHalf = rightHalf.next;
             }
-                head = head.next;            
+            head = head.next;            
         }
         leftHalf.next = dummyRight.next;
-        rightHalf.next = null;
+        rightHalf.next = null;  // remeber to set the final node.next point to null, otherwise it may cause dead loop
         return dummyLeft.next;
     }
 }
