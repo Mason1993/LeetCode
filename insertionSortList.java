@@ -15,10 +15,10 @@ public class Solution {
         while (head != null) {
             ListNode preNode = dummy;
             ListNode aftNode = head.next;
-            while (pointer.next != null && preNode.next.val < head.val) {
+            while (preNode.next != null && preNode.next.val < head.val) {
                 preNode = preNode.next;
             }
-            head.next = pre.next;
+            head.next = preNode.next;
             preNode.next = head;
             head = aftNode;
         }
