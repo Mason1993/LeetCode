@@ -9,3 +9,7 @@ Linked List Easy Problems Done by Dec.20.2015.
 
 Linked List Medium Problems Done by Jan.2.2016.
 
+Array Easy Done by Jan.6
+
+
+
