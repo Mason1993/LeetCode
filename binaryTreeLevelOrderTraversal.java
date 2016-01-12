@@ -26,6 +26,9 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
+
+// BFS implementation, one queue (Recommended solution)
+// For other implementations, like DFS, BFS with two queues, BFS with one queue and dummy node, please refer to http://www.jiuzhang.com/solutions/binary-tree-level-order-traversal/
 public class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
