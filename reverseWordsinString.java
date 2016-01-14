@@ -22,6 +22,6 @@ public class Solution {
         if (length == 0) {
             return "";
         }
-        return result.substring(0, length - 1);   
+        return result.substring(0, length - 1);  // substring[start_index, end_index); exclude end_index.
     }
 }
