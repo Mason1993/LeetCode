@@ -15,32 +15,38 @@
 
 public class Solution {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-    List<List<Integer>> result = new ArrayList<List<Integer>>();
- 
-    if(candidates == null || candidates.length == 0) return result;
- 
-    ArrayList<Integer> current = new ArrayList<Integer>();
-    Arrays.sort(candidates);
- 
-    combinationSum(candidates, target, 0, current, result);
- 
-    return result;
-}
- 
-public void combinationSum(int[] candidates, int target, int j, ArrayList<Integer> curr, List<List<Integer>> result){
-   if(target == 0){
-       ArrayList<Integer> temp = new ArrayList<Integer>(curr);
-       result.add(temp);
-       return;
-   }
- 
-   for(int i=j; i<candidates.length; i++){
-       if(target < candidates[i]) 
+        List<List<Integer>> result = new ArrayList<List<Integer>> ();
+        if (candidates == null || candidates.length == 0) {
+            return result;
+        }
+        List<Integer> cmb = new ArrayList<Integer> ();
+        Arrays.sort(candidates);
+        combinationSumHelper(candidates, target, 0, cmb, result);
+        return result;
+    }
+    
+    private void combinationSumHelper(int[] candidates, int target, int start, List<Integer> cmb, List<List<Integer>> result) {
+        // exit condition 
+        if (target == 0) {
+            // print all elements in list
+            // for (int j = 0; j < cmb.size(); j++) {
+            //     System.out.println(cmb.get(j));
+            // }
+            result.add(new ArrayList<Integer>(cmb));  // why need to initialize a new ArrayList here?
             return;
- 
-       curr.add(candidates[i]);
-       combinationSum(candidates, target - candidates[i], i, curr, result);
-       curr.remove(curr.size()-1); 
-   }
-}
+        }
+        for (int i = start; i < candidates.length; i++) {
+            // candidates[i] > target, which means that the current solution is invalid
+            if (candidates[i] > target) {
+                break;
+            }
+            // remove duplicates
+            if (i != start && candidates[i] == candidates[i -1]) {
+                continue;
+            }
+            cmb.add(candidates[i]);
+            combinationSumHelper(candidates, target - candidates[i], i, cmb, result); // need to set start index == i since it is allowed that same element can be used multiple times
+            cmb.remove(cmb.size() - 1); // each time add new element into the temp result, cmb, we also need to remove it in the last so that we can get a empty cmb in next for loop iteration.
+        }
+    }
 }
