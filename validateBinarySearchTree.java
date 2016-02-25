@@ -38,7 +38,7 @@ public class Solution {
         if (root.val <= min || root.val >= max) {
             return false;
         }
-        boolean isLeftBST = isValidBSTHelper (root.left, min, root.val);   // min is the parent's value of root, which is 2 levels higher than root.left
+        boolean isLeftBST = isValidBSTHelper (root.left, min, root.val);   // min is the minimum value of the tightest node value
         boolean isRightBST = isValidBSTHelper (root.right, root.val, max);
         return isLeftBST && isRightBST;
     }
