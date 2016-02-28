@@ -24,7 +24,9 @@ class Solution {
         int middle;
         while (start + 1 < end) {
         	middle = start + (end - start) / 2;
-        	if (target < nums[middle]) {
+        	if (target == nums[middle]) {           // separted with "<" case to make the logic clearer
+                end = middle;
+        	} else if (target < nums[middle]) {
         		end = middle;
         	} else {
         		start = middle;
