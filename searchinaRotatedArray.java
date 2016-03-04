@@ -24,7 +24,7 @@
 // The key thought of binary search is to decrease the problem size from O(n) to O(n/2).         
 public class Solution {
     public int search(int[] nums, int target) {
-        if (nums == null && nums.length == 0) {
+        if (nums == null || nums.length == 0) {
             return -1;
         }
         
