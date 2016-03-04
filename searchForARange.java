@@ -12,6 +12,67 @@
 // Similar Problems (E) First Bad Version
 // Next challenges: (M) Construct Binary Tree from Preorder and Inorder Traversal (M) Construct Binary Tree from Inorder and Postorder Traversal (E) Shortest Word Distance.
 
+// new solution
+public class Solution {
+    /** 
+     *@param A : an integer sorted array
+     *@param target :  an integer to be inserted
+     *return : a list of length 2, [index1, index2]
+     */
+    public int[] searchRange(int[] A, int target) {
+        // write your code here
+        int[] result = new int[2];
+        if (A == null || A.length == 0) {
+            return new int[]{-1, -1};
+        }
+        
+        // find the left bound
+        int start = 0;
+        int end = A.length - 1;
+        int middle;
+        while (start + 1 < end) {
+            middle = start + (end - start) / 2;
+            if (A[middle] == target) {
+                end = middle;
+            } else if (A[middle] < target) {
+                start = middle;
+            } else {
+                end = middle;
+            }
+        }
+        if (A[start] == target) {
+            result[0] = start;
+        } else if (A[end] == target) {
+            result[0] = end;
+        } else {
+            return new int[]{-1, -1};
+        }
+        
+        // find the right bound
+        start = 0;
+        end = A.length - 1;
+        while (start + 1 < end) {
+            middle = start + (end - start) / 2;
+            if (A[middle] == target) {
+                start = middle;
+            } else if (A[middle] < target) {
+                start = middle;
+            } else {
+                end = middle;
+            }
+        }
+        if (A[end] == target) {
+            result[1] = end;
+        } else if (A[start] == target) {
+            result[1] = start;
+        }
+        return result;
+    }
+}
+
+
+
+// inital solution
 public class Solution {
     public int[] searchRange(int[] nums, int target) {
         int[] result = new int[2];
@@ -79,3 +140,4 @@ public class Solution {
         return result;
     }
 }
+
