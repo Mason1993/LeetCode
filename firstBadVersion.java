@@ -28,10 +28,16 @@ public class Solution extends VersionControl {
         }
         if (isBadVersion(start)) {
             return start;
-        } else if (isBadVersion(start + 1)) {
-            return start + 1;
-        } else {   // given that there must be a failed version
+        } else {
             return end;
         }
+        // initial solution
+        // if (isBadVersion(start)) {
+        //     return start;
+        // } else if (isBadVersion(start + 1)) {
+        //     return start + 1;
+        // } else {   // given that there must be a failed version
+        //     return end;
+        // }
     }
 }

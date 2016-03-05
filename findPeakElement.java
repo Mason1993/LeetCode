@@ -33,7 +33,7 @@ public class Solution {
                 start = middle;
             } else if (nums[middle] < nums[middle - 1] && nums[middle] > nums[middle + 1]) {
                 end = middle;
-            } else if (nums[middle] < nums[middle - 1] && nums[middle] > nums[middle + 1]) {
+            } else if (nums[middle] < nums[middle - 1] && nums[middle] < nums[middle + 1]) {
                 start = middle;
             } else {
                 return middle;
