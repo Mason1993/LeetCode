@@ -7,7 +7,7 @@
 
 
 public class Solution {
-    public double mySqrt(int x) {
+    public double mySqrt(int x， double precision) {
         if (x < 0) {
             return -1;
         }
@@ -17,7 +17,7 @@ public class Solution {
         double start = 0;
         double end = (double)(x);
         double middle = 0;
-        while (end - start > 1e-4) {
+        while (end - start > precision) {
             middle = start + (end - start) / 2;
             if (x / middle == middle) {
                 System.out.println(middle);
