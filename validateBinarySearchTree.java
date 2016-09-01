@@ -23,7 +23,7 @@
  */
 
 // two places need attention: （Actually 2 itself can be the validation, which is what we did for this problem）
-// 1. curr.val must be [curr.left.val, curr.right.val]
+// 1. curr.val must be within [curr.left.val, curr.right.val]
 // 2. if curr is in left children, then curr < the value of the parent of curr
 //    if curr is in right children, then curr > the value of the parent of curr
 public class Solution {
