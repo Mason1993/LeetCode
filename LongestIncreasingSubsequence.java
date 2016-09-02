@@ -36,7 +36,8 @@ public class Solution {
                         end = mid;
                     }
                 }
-                if (list.get(start) > num) {
+                // just curious, list.get(0) > num also works
+                if (list.get(start) > num) {   // this is just to handle the case that the first index of list is larger than num. At least if remove the if (list.get(start) > num statement, the test cases {10, 9, 2, 5, 3, 7, 101, 18}; {3, 1, 2}; {10,9,2,5,3,4}; {10,9,2,5,3,7,200,18,101,102,103} will fail the program;
                     list.set(start, num);
                 } else if (list.get(start) < num && list.get(end) > num) {
                     list.set(end, num);
