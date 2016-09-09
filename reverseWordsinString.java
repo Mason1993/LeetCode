@@ -10,10 +10,10 @@ public class Solution {
             return "";
         }
         // parsing the string according to " ".
-        String[] attr = s.split(" ");
+        String[] attr = s.split(" "); // the blank spaces themselves won't be in the array
         StringBuilder str = new StringBuilder();
         for (int i = attr.length - 1; i >= 0; --i) {
-            if (!attr[i].equals("")) {
+            if (!attr[i].equals("")) {  // to remove the "" element when split conituous blank spaces.
                 str.append(attr[i] + " ");
             }
         }

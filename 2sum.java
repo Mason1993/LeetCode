@@ -25,3 +25,7 @@ public class Solution {
         return result;
     }
 }
+
+// given the condition that each input would have exactly one solution, so if the input array nums contains n same elements:
+// 1: n > 2: none of them would be the result. Therefore, when add the duplicate key into hashmap, the value namely the index in nums will be replaced with the new value, which doesn't matter to the result.
+// 2: n == 2: if they are result, e.g nums = [1,3,2,5,2] target = 4, then before target - nums[5] being added into hashmap, the result will be returned.
