@@ -28,6 +28,10 @@ public class Solution {
                 if (s.charAt(i - 1) != t.charAt(j - 1)) {
                     dpState[i][j] = dpState[i - 1][j];
                 } else {
+                    // if it matches, it can be divided into two parts
+                    // 1: dpState[i-1][j-1]: it can be considered as substring of S[0, i-1], which matches substring of T[0, j-1], then add S[i]
+                    // 2: dpState[i-1][j]: similar as S[i] != T[j], the number of that substring of S[0, i-1] matches T[0,j]
+                    // Since part 1 contains S[i] while part2 doesn't, so the number of matching substring is not double counted or overlap
                     dpState[i][j] = dpState[i - 1][j - 1] + dpState[i - 1][j];
                 }
             }
