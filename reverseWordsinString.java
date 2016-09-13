@@ -4,6 +4,25 @@
 // Given s = "the sky is blue",
 // return "blue is sky the".
 
+// recent try, no need to use StringBuilder
+public class Solution {
+    public String reverseWords(String s) {
+        if (s == null || s.length() == 0) {
+            return "";
+        }
+        
+        String result = "";
+        String[] splited = s.split(" ");
+        for (int i = splited.length - 1; i >= 0; i--) {
+            if (!splited[i].equals("")) {
+               result += splited[i] + " ";  
+            }
+        }
+        return result == "" ? "" : result.substring(0, result.length() - 1);
+    }         
+}
+
+
 public class Solution {
     public String reverseWords(String s) {
         if (s == null || s.length() == 0) {
