@@ -5,6 +5,9 @@
 // Tags Array Dynamic Programming
 // Similar Problems (M) Maximum Subarray (M) Best Time to Buy and Sell Stock II (H) Best Time to Buy and Sell Stock III (H) Best Time to Buy and Sell Stock IV (M) Best Time to Buy and Sell Stock with Cooldown
 
+// check the follow up problem: if there is budget limit, maximum your gain.
+// e.g. budget = 100, stocks = [4, 10, 6, 7, 1, 2]. Then bug at 4 and sell at 10, so the maximum gain is 100 / 4 * 10 = 250
+
 // solution 1, dynamic programming, O(n)
 public class Solution {
     public int maxProfit(int[] prices) {
@@ -39,3 +42,21 @@ public class Solution {
         return result;
     }
 }
+
+// folowup solution
+    private static int maxProfit (int budget, int[] stocks) {
+        if (budget == 0 || stocks == null || stocks.length == 0) {
+            return 0;
+        }
+        
+        double max = Integer.MIN_VALUE;
+        double min = Integer.MAX_VALUE;
+        for (int i : stocks) {
+            min = Math.min(i, min);
+            max = Math.max(max, i / min);
+        }
+        
+        int profit = (int) Math.round(budget * max); // profit = budget / min * max
+        return profit;
+    }
+
