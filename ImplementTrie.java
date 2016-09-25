@@ -1,3 +1,13 @@
+// Implement a trie with insert, search, and startsWith methods.
+
+// Note:
+// You may assume that all inputs are consist of lowercase letters a-z.
+
+// Subscribe to see which companies asked this question
+
+// Hide Tags Design Trie
+// Hide Similar Problems (M) Add and Search Word - Data structure design
+
 class TrieNode {
     Map<Character, TrieNode> children;
     boolean isEnd;
