@@ -22,7 +22,7 @@ public class Solution {
             int currH = minIndex == heights.length ? -1 : heights[minIndex];
             // use a ascending stack to get the first value smaller than current value on the left and on the right in O(n)
             // even though for some special cases, for example: arr = [1,2,3,4,5,6,0]. when push arr[6] into the stack, we need to pop all the elements in the stack which costs O(n). However the average time is still (1+1+1+1+1+1+6)/7 = O(1)
-            while (!stack.isEmpty() && currH < heights[stack.peek()]) {
+            while (!stack.isEmpty() && currH < heights[stack.peek()]) { 
                 int h = heights[stack.pop()];
                 int w = stack.isEmpty() ? minIndex : minIndex - stack.peek() - 1;
                 max = Math.max(max, h * w);
