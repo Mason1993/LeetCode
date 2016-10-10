@@ -7,6 +7,7 @@
 
 // Hide Tags Design
 
+// if get confused, refer to the lesson 8
 public class LRUCache {
     private class Node {
         int key;
