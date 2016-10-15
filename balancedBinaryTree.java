@@ -21,7 +21,7 @@ public class Solution {
         if (root == null) {
             return true;
         }
-        if (getHeight == -1) {
+        if (getHeight(root) == -1) {
             return false;
         }
         return true;
