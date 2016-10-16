@@ -15,7 +15,35 @@
 // Hide Tags Hash Table Sort
 // Hide Similar Problems (M) Group Anagrams (E) Palindrome Permutation
 
+// O(n) solution
+public class Solution {
+    public boolean isAnagram(String s, String t) {
+        if (s.length() == 0 && t.length() == 0) {
+            return true;
+        }
+        if (s == null || s.length() == 0 || t == null || t.length() == 0 || s.length() != t.length()) {
+            return false;
+        }
+        
+        int[] arr = new int[26];
+        for (int i = 0; i < s.length(); i++) {
+            int index = s.charAt(i) - 'a';
+            arr[index]++;
+        }
+        for (int i = 0; i < t.length(); i++) {
+            int index = t.charAt(i) - 'a';
+            arr[index]--;
+        }
+        for (int i = 0; i < 26; i++) {
+            if (arr[i] != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
 
+// O(nlogn) solution
 public class Solution {
     public boolean isAnagram(String s, String t) {
         if (s.length() == 0 && t.length() == 0) {
