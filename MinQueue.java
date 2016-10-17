@@ -1,4 +1,3 @@
-
 // Implement a MinQueue Class that supports offer, remove and getMin in O(1), similar to leetcode minstack problem
 // 4 -> 3 -> 2-> 5
 // begin: 2, 2(after remove 5), 3(after remove 2), 4(after remove 3)
