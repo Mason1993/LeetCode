@@ -61,7 +61,7 @@ public class Solution {
                 stack.push(curr);
                 curr = curr.left;
             }
-            if (!stack.empty()) {
+            if (!stack.empty()) { // it seems that check if stack is empty is unnecessary
                 curr = stack.pop();
                 result.add(curr.val);
                 curr = curr.right;
