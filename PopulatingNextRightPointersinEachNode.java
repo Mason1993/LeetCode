@@ -40,6 +40,8 @@
  *     TreeLinkNode(int x) { val = x; }
  * }
  */
+
+// I was thinking using binary search with queue, however, when inserting nodes (especially the bottom level ones), the queue is not of constant space anymore. So this solution is not doable, plus it's kinda complicated
 public class Solution {
     public void connect(TreeLinkNode root) {
         if (root == null) {
