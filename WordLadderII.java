@@ -21,6 +21,7 @@
 // Hide Tags Array Backtracking Breadth-first Search String
 
 // incomplete, too much details to consider and process
+// basic idea, backtracking and BFS. Too difficult, save it for later
 public class WordLadderII {
 	public List<List<String>> findLadders(String beginWord, String endWord, Set<String> wordList) {
         List<List<String>> res = new ArrayList<List<String>>();
