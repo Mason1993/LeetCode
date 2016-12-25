@@ -63,4 +63,26 @@ public class Solution {
             start = start.left;
         }
     }
+
+    public static void connect2(TreeLinkNode root) {
+        if (root == null) {
+            return;
+        }
+        
+        TreeLinkNode curr = root;
+        while (curr != null) {
+            TreeLinkNode head = curr;
+            while (curr != null) {
+                if (curr.left != null) { // if curr.left != null then curr.right != null since it's perfect bianry tree;
+                    curr.left.next = curr.right;
+
+                    if (curr.next != null) {
+                        curr.right.next = curr.next.left;
+                    }
+                }
+                curr = curr.next;
+            }
+            curr = head.left;
+        }
+    }
 }
