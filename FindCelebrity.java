@@ -49,3 +49,60 @@ public class Solution extends Relation {
         return candidate;
     }
 }
+
+// Graph version, using inDegree (number of people know you) and outDegree (number of people you know)
+// Time Complexity: O(n^2), Space Complexity: O(n)
+public int findCelebrity(int n) {
+    int[] inDegree = new int[n];
+    int[] outDegree = new int[n];
+    
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (i != j && knows(i,j)) {
+                inDegree[j]++;
+                outDegree[i]++;
+            }
+        }
+    }
+    
+    for (int i = 0; i < n; i++) {
+        if (inDegree[i] == n - 1 && outDegree[i] == 0) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+// HashMap Version
+// Time Complexity: O(n^2), Space Complexity: O(n^2)
+
+public class Solution extends Relation {
+    public int findCelebrity(int n) {
+        Map<Integer, Set<Integer>> map = new HashMap<Integer, Set<Integer>>();
+        
+        for (int i = 0; i < n; i++) {
+            Set<Integer> set = new HashSet<Integer>();
+            map.put(i, set);
+            for (int j = 0; j < n; j++) {
+                if (i != j && knows(i, j)) {
+                    set.add(j);
+                }
+            }
+        }
+        
+        int candidate = -1;
+        for (int key : map.keySet()) {
+            if (map.get(key).size() == 0) {
+                candidate = key;
+                for (int i : map.keySet()) {
+                    if (i != candidate && !map.get(i).contains(candidate)) {
+                        candidate = -1;
+                        break;
+                    }
+                }
+            }
+        }
+        
+        return candidate;
+    }
+}

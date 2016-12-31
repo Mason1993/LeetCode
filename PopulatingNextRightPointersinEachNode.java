@@ -41,6 +41,97 @@
  * }
  */
 
+// Calculate the height of perfect binary tree: Geometric progression. height = log(n + 1) / log2
+
+// solutions: 1 > 3 > 2 criteria: the time and space complexity
+
+// solution 1: iterative
+// Space Complexity: O(1), Time Complexity: O(n) - O(logn) = O(n) (Connect every node on every level. Suppose the number of nodes on the current level is x , then there are x - 1 connect operations (alway less than number of nodes by 1). The height of a perfect binary tree is logn, so the time complexity is O(n) - O(logn)
+public class Solution {
+    public void connect(TreeLinkNode root) {
+        if (root == null) {
+            return;
+        }
+        
+        TreeLinkNode head = root.left;  // the first node on the current row
+        while (head != null) {
+            TreeLinkNode curr = root.left;  // curr: current node, which is one row lower than root
+            curr.next = root.right;
+            curr = curr.next;
+            root = root.next;
+            if (root != null) {       
+                curr.next = root.left;  // perfect binary tree, root must have left and right children on the same level as current node
+            } else {              // the tail of current row, move to next row. Set root to the begining of next row
+                root = head;
+                head = head.left;
+            }
+        }
+    }
+}
+
+// solution 2: iterative
+
+// Space Complexity: O(n/2) (the number of nodes on the last level is (n + 1)/2 )
+// Time Complexity: O(n) 
+public class Solution {
+    public void connect(TreeLinkNode root) {
+        if(root==null)
+            return;
+     
+        LinkedList<TreeLinkNode> nodeQueue = new LinkedList<TreeLinkNode>();
+        LinkedList<Integer> depthQueue = new LinkedList<Integer>();
+     
+        if(root!=null){
+            nodeQueue.offer(root);
+            depthQueue.offer(1);
+        }
+     
+        while(!nodeQueue.isEmpty()){
+            TreeLinkNode topNode = nodeQueue.poll();
+            int depth = depthQueue.poll();
+     
+            if(depthQueue.isEmpty()){  // last node on the last row, no more nodes to be connected 
+                topNode.next = null;
+            }else if(depthQueue.peek()>depth){  // last node on the current row, the remaining nodes in queue are from next row
+                topNode.next = null;
+            }else{                     // the node on the current row (not last node )
+                topNode.next = nodeQueue.peek();
+            }
+            
+            // if not the last row
+            if(topNode.left!=null){   
+                nodeQueue.offer(topNode.left);
+                depthQueue.offer(depth+1);
+            }
+     
+            if(topNode.right!=null){
+                nodeQueue.offer(topNode.right);
+                depthQueue.offer(depth+1);
+            }        
+        }
+    }
+}
+
+// solution 3: recursive
+// Space Complexity: O(logn) using stack 
+// Time Complexity: O(n). For time complexity of recursive algorithms, please refer to https://www.cs.duke.edu/~ola/ap/recurrence.html 
+public class Solution {
+    public void connect(TreeLinkNode root) {
+        if(root == null) {
+            return;
+        }
+        
+        if (root.left != null) {
+            root.left.next = root.right;
+            if (root.next != null) {
+                root.right.next = root.next.left;
+            }
+        }
+        
+        connect(root.left);
+        connect(root.right);
+    }
+}
 // I was thinking using binary search with queue, however, when inserting nodes (especially the bottom level ones), the queue is not of constant space anymore. So this solution is not doable, plus it's kinda complicated
 public class Solution {
     public void connect(TreeLinkNode root) {
