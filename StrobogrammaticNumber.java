@@ -4,7 +4,7 @@ public class Solution {
             return false;
         }
         if (num.length() == 1) {
-            return num == "0" || num == "1" || num == "8";
+            return (num).equals("0") || (num).equals("1") || (num).equals("8");
         }
         Map<Character, Character> map = new HashMap<Character, Character>();
         map.put('0', '0');
